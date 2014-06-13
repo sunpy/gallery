@@ -35,11 +35,11 @@ def walk_through_tutorials(only_published=True, selected_nb_re=None):
     nbre = re.compile(selected_nb_re) if selected_nb_re else None
 
     current_directory = os.getcwd()
-    tutorials_base = os.path.join(current_directory,'tutorials')
+    tutorials_base = os.path.join(current_directory,'gallery')
 
     if not os.path.exists(tutorials_base):
-        err = ("Can't find 'tutorials' path! You must run this script from the"
-               " top-level astropy-tutorials directory.")
+        err = ("Can't find 'gallery' path! You must run this script from the"
+               " top-level sunpy-gallery directory.")
         raise IOError(err)
 
     # walk through each directory in tutorials/ to find all .ipynb file
@@ -55,7 +55,7 @@ def walk_through_tutorials(only_published=True, selected_nb_re=None):
             if ext.lower() == ".ipynb" and "checkpoint" not in base:
                 full_filename = os.path.join(tutorial_path, filename)
                 notebook = read(open(full_filename), 'json')
-                is_published = notebook['metadata']['astropy-tutorials'].get('published', False)
+                is_published = notebook['metadata']['sunpy-gallery'].get('published', False)
                 if not is_published and only_published:
                     continue
 
@@ -109,7 +109,7 @@ def convert_notebooks(selected_nb_re=None):
     app.initialize(argv=[]) # hack
     app.export_format = 'html'
     app.config.Exporter.template_path = ['templates', template_path]
-    app.config.Exporter.template_file = 'astropy'
+    app.config.Exporter.template_file = 'sunpy'
 
     # walk through each directory in tutorials/ to find all .ipynb file
     index_list = []
@@ -130,7 +130,7 @@ def convert_notebooks(selected_nb_re=None):
 
         index_listing = dict()
         index_listing["link_path"] = "{}.html".format(cleanbase)
-        index_listing["link_name"] = nb['metadata']['astropy-tutorials']['link_name']
+        index_listing["link_name"] = nb['metadata']['sunpy-gallery']['link_name']
         index_list.append(index_listing)
 
     # Make an index of all notes

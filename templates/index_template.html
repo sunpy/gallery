@@ -1,51 +1,139 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Astropy. A Community Python Library for Astronomy." />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" href="../favicon.ico" />
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:200,300,400italic,400,700' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<!--<link rel="stylesheet" type="text/css" href="../css/jquery.sidr.light.css" />-->
+<title>
 
+    The SunPy Gallery
 
-<title>Astropy Tutorials</title>
+</title>
 
-<!-- Google analytics -->
-<!--<script src="../js/analytics.js"></script>-->
-</head>
+<!-- Bootstrap core CSS -->
+<link href="http://sunpy.github.io/css/bootstrap.min.css" rel="stylesheet">
 
-<body>
+<!-- Documentation extras -->
+<link href="http://sunpy.github.io/docs-assets/css/docs.css" rel="stylesheet">
+<link href="http://sunpy.github.io/docs-assets/css/pygments-manni.css" rel="stylesheet">
 
-<div id="wrapper">
-    <nav style="font-size: 140%; color: #fff; font-weight: 300;">
-        <a href="http://www.astropy.org">
-            <img src="images/astropy_word_32.png" style="vertical-align: middle;"/>
-        </a>
-        <li><a href="http://tutorials.astropy.org/">tutorials</a></li>
+<link href="http://sunpy.github.io/docs-assets/css/sunpy.css" rel="stylesheet">
+
+<!--[if lt IE 9]><script src="http://sunpy.github.io/docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/apple-touch-icon-152x152.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon-196x196.png" sizes="196x196">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon-160x160.png" sizes="160x160">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon-32x32.png" sizes="32x32">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/mstile-144x144.png">
+
+<!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/sunpy/sunpy-logo/master/generated/favicons/favicon.ico?raw=true"> -->
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <!-- Docs master nav -->
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://sunpy.github.io/" class="navbar-brand">SunPy</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="http://sunpy.github.io/about">About</a>
+        </li>
+        <li>
+          <a href="http://sunpy.github.io/blog/index.html">Blog</a>
+        </li>
+        <li>
+          <a href="http://docs.sunpy.org/en/stable/">Docs</a>
+        </li>
+        <li>
+          <a href="#">Gallery</a>
+        </li>
+        <li>
+          <a href="http://sunpy.github.io/contribute">Contribute</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="http://sunpy.github.io/help">Help</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="https://plus.google.com/+SunpyOrg" rel="publisher">Google+</a>
+        </li>
+      </ul>
     </nav>
-    <section>
+  </div>
+</header>
 
-    <h1> Astropy Tutorials</h1>
-        <p>The <a href="http://docs.astropy.org/">Astropy documentation</a> provides a structured view of the functionality within the Astropy project, but does not contain full, worked-through examples. The tutorials on this site walk through some typical software tasks and demonstrate the features in Astropy sub-packages in the context of a story or standard workflow.</p>
-
-        <p>If you are a user interested in contributing a tutorial, please check the <a href="https://github.com/astropy/astropy-tutorials/blob/master/README.rst">README</a> or contact the <a href="https://groups.google.com/forum/#!forum/astropy-dev">developer list</a>. The tutorials are not meant to be written by developers; we are looking for contributions from users like you!</p>
-
-        <p>We welcome feedback about existing tutorials through GitHub. At the top of each tutorial is a link that takes you to the Astropy Tutorials issues list. If you find a typo or would like to clarify some text, please either create an issue or submit a pull request directly to the repository. To discuss tutorial content, consider sending your questions / comments to the <a href="https://groups.google.com/forum/#!forum/astropy-dev">astropy-dev</a> mailing list.</p>
-
-    </section>
-    <section class="tutorials">
-
-    <h2>Tutorial Index</h2>
-    <ul>
-{entries}
-    </ul>
-
-    </section>
-
+<div id="content" class="bs-header">
+  <div class="container">
+    <h1>The SunPy Gallery</h1>
+    <p>Examples and tutoirals of using SunPy.</p>
+  </div>
 </div>
 
-</body>
+<div class="container bs-docs-container">
+  <div class="row row-centered">
+    <div class="col-md-1">
+    </div>
+    <div class="bs-docs-section">
+      <div class="col-md-9">
+        <h1></h1>
+        <p>
+          Welcome to this very beta version of the SunPy gallery we hope that it
+          will see much improvement in the near future!
+        <p>
+          This is a list of all the current examples:
+        </p>
+        <div class="col-md-9" role="main">
+            {entries}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://sunpy.github.io/js/bootstrap.js"></script>
+
+<script src="http://sunpy.github.io/docs-assets/js/holder.js"></script>
+
+<script src="http://sunpy.github.io/docs-assets/js/application.js"></script>
+
+  </body>
 </html>
