@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GH_PAGESBRANCH=gh-pages
-GH_REMOTE=origin
+GH_REMOTE=upstream
 
 # get current git branch name - should throw an error if in a detached state
 current_branch_name="$(git symbolic-ref --short HEAD)"
