@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="http://sunpy.github.io/" class="navbar-brand">SunPy Gallery</a>
+      <a href="http://sunpy.github.io/gallery" class="navbar-brand">SunPy Gallery</a>
     </div>
   </div>
 </header>
