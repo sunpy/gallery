@@ -57,6 +57,7 @@ then
     rm -rf _tmp
 
     git add *.html
+    git add gallery.json
     git add images
     git add css
     git commit -m "Generated from sources"
