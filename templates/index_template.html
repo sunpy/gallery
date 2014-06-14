@@ -118,9 +118,9 @@
         <p>
           This is a list of all the current examples:
         </p>
-        <div class="col-md-9" role="main">
-            {entries}
-        </div>
+        <!-- <div class="col-md-9" role="main">
+        </div> -->
+        <div id='sunpy-gallery'></div>
       </div>
     </div>
   </div>
@@ -135,5 +135,44 @@
 
 <script src="http://sunpy.github.io/docs-assets/js/application.js"></script>
 
-  </body>
+<!-- Load SunPy gallery -->
+<script type='text/javascript'>
+$(function() {
+    $.getJSON("gallery.json", function(data) {
+        var gallery = $('#sunpy-gallery'),
+
+        // Entry HTML parts
+        entry_div = "<div class='col-xs-12 col-sm-6 col-lg-4'>";
+
+        $.each(data.sections, function (section, entries) {
+            // Add section header
+            section_title = section.replace(/^[\d]*-/, '');
+            gallery.append("<h2>" + section_title + "</h2>");
+            subsection = $('<div class="gallery-section row">').appendTo(gallery);
+
+            $.each(entries, function(i, notebook) {
+                // @TODO: either decide to use only PNG, or detect
+                // file extension.
+                var basefile = section + "/" + notebook.notebook,
+
+                // construct gallery entry
+                entry = entry_div + "<h4 style='text-align: center'>" + notebook.link_name + "</h4>" +
+                    "<a href='" + basefile + ".html'>" +
+                    "<img width='100%' src='" + basefile + ".png' /></a></div>";
+
+                // Add to output
+                subsection.append(entry);
+            })
+
+            // End of gallery section
+            gallery.append('</div>');
+        });
+
+        // Add SunPy version
+        $("#footer a").text("SunPy " + data.meta.sunpy);
+    });
+});
+</script>
+
+</body>
 </html>

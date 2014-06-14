@@ -9,6 +9,7 @@ from __future__ import division, print_function
 import os
 import re
 import sys
+import json
 import shutil
 
 # protect for 2.* vs. 3.*
@@ -19,8 +20,11 @@ except ImportError:
     import ConfigParser
     cp = ConfigParser
 
+import sunpy
 from astropy import log as logger
 from IPython.nbformat.current import read, write
+from IPython.nbconvert import RSTExporter
+from IPython.display import Image
 
 # A template for the index page
 with open("templates/index_template.html") as f:
@@ -93,6 +97,31 @@ def run_notebooks(selected_nb_re=None):
 
     os.chdir(_orig_path)
 
+def extract_notebook_thumbnail(filepath, target_file):
+    """
+    Returns a thumbnail using the last image found in the specified
+    notebook.
+
+    For now, just returns the image at it's original size.
+    """
+    # RSTExporter saves images separately
+    rst_exporter = RSTExporter()
+    (body, resources) = rst_exporter.from_filename(filepath)
+
+    # Find image entries
+    extensions = ('png', 'jpg')
+    images = [x for x in resources['outputs'].keys() if x.endswith(extensions)]
+
+    # Save image
+    key = images.pop()
+    ext = key[-3:]
+    image = Image(data=resources['outputs'][key], format=ext)
+
+    # Write image to disk
+    fp = open("{}.{}".format(target_file, ext), 'wb')
+    fp.write(image.data)
+    fp.close()
+
 def convert_notebooks(selected_nb_re=None):
     """ Convert the tutorials (IPython notebook files) located in tutorials/*
         into static HTML pages.
@@ -111,8 +140,16 @@ def convert_notebooks(selected_nb_re=None):
     app.config.Exporter.template_path = ['templates', template_path]
     app.config.Exporter.template_file = 'sunpy'
 
+
+    # Construct a JSON representation of all the tutorials in the gallery
+    gallery = {}
+
+    gallery['meta'] = {
+        'sunpy': sunpy.__version__
+    }
+    gallery['sections'] = {}
+
     # walk through each directory in tutorials/ to find all .ipynb file
-    index_list = []
     re_str = ('_run_' + selected_nb_re) if selected_nb_re else None
     for tutorial_filename,nb in walk_through_tutorials(only_published=True,
                                 selected_nb_re=re_str):
@@ -124,23 +161,38 @@ def convert_notebooks(selected_nb_re=None):
         base = os.path.splitext(filename)[0]
         cleanbase = base.lstrip("_run_")
 
-        app.output_base = os.path.join(html_base,cleanbase)
+        section_name = nb['metadata']['sunpy-gallery'].get('section_name', 'Examples')
+        section_dir = os.path.join(html_base, section_name)
+        if not os.path.exists(section_dir):
+            os.makedirs(section_dir)
+
+        app.output_base = os.path.join(section_dir, cleanbase)
         app.notebooks = [os.path.join(path,filename)]
         app.start()
 
-        index_listing = dict()
-        index_listing["link_path"] = "{}.html".format(cleanbase)
-        index_listing["link_name"] = nb['metadata']['sunpy-gallery']['link_name']
-        index_list.append(index_listing)
 
-    # Make an index of all notes
-    entries = []
-    for page in sorted(index_list, key=lambda x: x['link_name']): # sort on tutorial name
-        entries.append('      <li><a href="{0[link_path]}">{0[link_name]}</a></li>'.format(page))
 
+        # If we haven't processed this section before make it now
+        if gallery['sections'].get(section_name, None) is None:
+            gallery['sections'][section_name] = []
+
+        gallery['sections'][section_name].append({'notebook': "{}".format(cleanbase),
+                                                  'link_name': nb['metadata']['sunpy-gallery']['link_name']})
+
+        # Extract a tumbnail and save it to the same filename as the notebook
+        # with a different extension.
+        target_file = os.path.join(section_dir, cleanbase)
+        extract_notebook_thumbnail(os.path.join(section_dir, tutorial_filename), target_file)
+
+    # Save index_template to index.html
     with open(os.path.join(current_directory,'html','index.html'), 'w') as f:
-        f.write(INDEX_TEMPLATE.format(entries='\n'.join(entries)))
+        f.write(INDEX_TEMPLATE)
 
+    # Output gallery as JSON
+    gallery_json = json.dumps(gallery)
+
+    with open('html/gallery.json', 'w') as fp:
+        fp.write(gallery_json)
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
