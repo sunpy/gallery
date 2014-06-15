@@ -121,6 +121,14 @@
   </div>
 </div>
 
+<!-- footer -->
+<footer id="footer" class="bs-footer" role="contentinfo">
+  <p>
+  Generated using <a href="http://www.sunpy.org">SunPy</a>
+  </p>
+</footer>
+
+
 <!-- ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -164,7 +172,7 @@ $(function() {
         });
 
         // Add SunPy version
-        $("#footer a").text("SunPy " + data.meta.sunpy);
+        $("#footer a").text("SunPy v" + data.meta.sunpy);
     });
 });
 </script>
