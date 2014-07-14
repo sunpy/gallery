@@ -116,6 +116,13 @@ when you have large data files.
   set `tutorialpath` to
   ``'http://data.astropy.org/tutorials/My-tutorial-name/'``.
 
+* Choose an appropriate `section_name` from the following approved list 
+   * Introductory 
+   * Advanced
+   * Scientific Workflow
+   * Visualisation
+   * Working with Data
+
 
 ### For repository maintainers
 
