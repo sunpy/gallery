@@ -1,0 +1,1 @@
+{"meta": {"sunpy": "0.3.3"}, "sections": {"Introductory": [{"notebook": "aia_plot", "link_name": "AIA Plotting"}, {"notebook": "GOES_lightcurve", "link_name": "GOES Light Curves"}, {"notebook": "lightcurve_tutorial", "link_name": "Lightcurve tutorial"}, {"notebook": "SunPy_Overview", "link_name": "SunPy Overview"}]}}
