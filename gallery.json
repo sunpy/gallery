@@ -1,1 +1,21 @@
-{"meta": {"sunpy": "0.3.3"}, "sections": {"Introductory": [{"notebook": "lightcurve_tutorial", "link_name": "Lightcurve tutorial"}, {"notebook": "SunPy_Overview", "link_name": "SunPy Overview Tutorial"}, {"notebook": "SunPy_0.6_Release", "link_name": "SunPy 0.6 Release"}]}}
+{"meta": {"sunpy": "0.6.0"},
+    "sections":
+        {"Introductory": [
+            {"notebook": "lightcurve_tutorial", "link_name": "Lightcurve tutorial",
+                "description": "This tutorial provides an example workflow for the analysis of a flare including RHESSI, GOES, and LYRA data.",
+                "author": "Andy Inglis",
+                "last_updated": "2015/08/01"
+            },
+            {"notebook": "SunPy_Overview", "link_name": "SunPy Overview",
+                "description": "This tutorial covers some of the major functionality provided by SunPy.",
+                "author": "Steven Christe",
+                "last_updated": "2015/08/01"
+            },
+            {"notebook": "SunPy_0.6_Release", "link_name": "SunPy 0.6 Release Preview",
+                "description": "This tutorial covers some of the major new features available in SunPy 0.6.",
+                "author": "Steven Christe",
+                "last_updated": "2015/08/01"
+            }
+            ]
+        }
+}

@@ -101,7 +101,7 @@
 <div id="content" class="bs-header">
   <div class="container">
     <h1>SunPy Gallery</h1>
-    <p>Examples of using SunPy</p>
+    <p></p>
   </div>
 </div>
 
@@ -111,10 +111,11 @@
     </div>
     <div class="bs-docs-section">
       <div class="col-md-12">
-        <h1></h1>
-        <p>
-          Welcome to this very beta version of the SunPy gallery we hope that it
-          will see much improvement in the near future!
+        <p><br>The tutorials presented here provide some examples of typical
+            tasks as well as overviews of basic functionality provided by SunPy.
+            Please refer to the <a href="http://docs.sunpy.org/en/stable/">SunPy documentation</a>
+            for a more structured overview of the software.</p>
+            <h2>List of Tutorials</h2>
         <div id='sunpy-gallery'></div>
       </div>
     </div>
@@ -143,25 +144,29 @@
 $(function() {
     $.getJSON("gallery.json", function(data) {
         var gallery = $('#sunpy-gallery'),
-
+        notebook_baseurl = "https://raw.githubusercontent.com/sunpy/gallery/master/gallery/",
         // Entry HTML parts
-        entry_div = "<div class='col-xs-12 col-sm-6 col-lg-4'>";
+        entry_div = "<div>";
 
         $.each(data.sections, function (section, entries) {
             // Add section header
             section_title = section.replace(/^[\d]*-/, '');
-            gallery.append("<h2>" + section_title + "</h2>");
-            subsection = $('<div class="gallery-section row">').appendTo(gallery);
+            //gallery.append("<h2>" + section_title + "</h2>");
+            //subsection = $('<div class="gallery-section row">').appendTo(gallery);
+            subsection = $('<ul class="gallery-section">').appendTo(gallery);
 
             $.each(entries, function(i, notebook) {
                 // @TODO: either decide to use only PNG, or detect
                 // file extension.
                 var basefile = section + "/" + notebook.notebook,
+                notebook_url = notebook_baseurl + basefile + '/' + notebook.notebook + '.ipynb',
 
                 // construct gallery entry
-                entry = entry_div + "<h4 style='text-align: center'>" + notebook.link_name + "</h4>" +
-                    "<a href='" + basefile + ".html'>" +
-                    "<img width='100%' src='" + basefile + ".png' /></a></div>";
+                entry = entry_div + "<li><b>" + "<a href='" + basefile + ".html'>" +
+                    notebook.link_name + "</b></a> (<a href='" + notebook_url + "'>ipython notebook</a>) by " +
+                    notebook.author + " (<i>" + notebook.last_updated + "</i>)" + 
+                    //notebook.author + " " + notebook.last-updated +
+                    "<br>" + notebook.description + "</li>";
 
                 // Add to output
                 subsection.append(entry);
