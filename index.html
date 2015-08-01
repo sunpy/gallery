@@ -114,21 +114,21 @@
         <p><br>The tutorials presented here provide some examples of typical
             tasks as well as overviews of basic functionality provided by SunPy.
             Please refer to the <a href="http://docs.sunpy.org/en/stable/">SunPy documentation</a>
-            for a more structured overview of the software.</p>
+            for a more structured overview of the software.<br>
+
+            <div id="version" role="contentinfo">
+              <p>
+              Generated using <a href="http://www.sunpy.org">SunPy</a>.
+              </p>
+          </div>
+
+        </p>
             <h2>List of Tutorials</h2>
         <div id='sunpy-gallery'></div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- footer -->
-<footer id="footer" class="bs-footer" role="contentinfo">
-  <p>
-  Generated using <a href="http://www.sunpy.org">SunPy</a>
-  </p>
-</footer>
-
 
 <!-- ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -164,7 +164,7 @@ $(function() {
                 // construct gallery entry
                 entry = entry_div + "<li><b>" + "<a href='" + basefile + ".html'>" +
                     notebook.link_name + "</b></a> (<a href='" + notebook_url + "'>ipython notebook</a>) by " +
-                    notebook.author + " (<i>" + notebook.last_updated + "</i>)" + 
+                    notebook.author + " (<i>" + notebook.last_updated + "</i>)" +
                     //notebook.author + " " + notebook.last-updated +
                     "<br>" + notebook.description + "</li>";
 
@@ -177,7 +177,7 @@ $(function() {
         });
 
         // Add SunPy version
-        $("#footer a").text("SunPy v" + data.meta.sunpy);
+        $("#version a").text("SunPy v" + data.meta.sunpy);
     });
 });
 </script>
