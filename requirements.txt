@@ -1,4 +1,4 @@
 IPython[all]>=2.0
-astropy>=0.3
+astropy>=1.0
 runipy
 sunpy[all]
